@@ -386,9 +386,9 @@ def WF_fetch(self, url, postdata=None, server=None, port=None, protocol=None,
     # Other Full Request headers
     if self.authinfo:
         headers.append(('Authorization', "Basic %s"%self.authinfo))
-        
+
     #If a value is specified for 'Host' then another value should not be appended
-    if not webproxy and not 'Host' in self.extra_headers.keys():
+    if not webproxy and not 'Host' in dict(self.extra_headers):
         # HTTPConnection seems to add a host header itself.
         # So we only need to do this if we are not using a proxy.
         headers.append(('Host', host_header))
@@ -539,4 +539,3 @@ def HR___repr__(self):
         self.message)
 
 HTTPResponse.__repr__ = HR___repr__
-
