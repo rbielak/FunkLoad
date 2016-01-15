@@ -387,7 +387,9 @@ def WF_fetch(self, url, postdata=None, server=None, port=None, protocol=None,
     if self.authinfo:
         headers.append(('Authorization', "Basic %s"%self.authinfo))
 
-    #If a value is specified for 'Host' then another value should not be appended
+    # If a value is specified for 'Host' then another value should not be appended.
+    # self.extra_headers is a list of tuples, convert to dictionary to make the
+    # test work.
     if not webproxy and not 'Host' in dict(self.extra_headers):
         # HTTPConnection seems to add a host header itself.
         # So we only need to do this if we are not using a proxy.
